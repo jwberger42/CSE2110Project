@@ -15,32 +15,36 @@ namespace CSE2110Project
         {
             Console.WriteLine("Rock, paper, scissors, lizard, or Spock?!");
             input = Console.ReadLine().ToLower();
+            Logic(PlayerParser(input));
+        }
+        static int PlayerParser(String input)
+        {
             switch (input)
             {
                 case "rock":
-                    Logic(0);
+                    choice = 0;
                     break;
                 case "paper":
-                    Logic(1);
+                    choice = 1;
                     break;
                 case "scissors":
-                    Logic(2);
+                    choice = 2;
                     break;
                 case "lizard":
-                    Logic(3);
+                    choice = 3;
                     break;
                 case "spock":
-                    Logic(4);
-                    break;
-                default:
-                    Console.WriteLine("Don't enter something that is not a choice!!");
+                    choice = 4;
                     break;
             }
+            return choice;
         }
         static void Logic(int userin)
         {
+            Console.WriteLine("You chose: " + input);
             Random rand = new Random();
             cpuChoice = rand.Next(0,5);
+
         }
     }
 }
