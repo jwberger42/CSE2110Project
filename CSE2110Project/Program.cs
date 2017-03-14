@@ -10,6 +10,7 @@ namespace CSE2110Project
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("This is a test of C#!");
         }
     }
 }
