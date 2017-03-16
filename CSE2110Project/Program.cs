@@ -8,16 +8,18 @@ namespace CSE2110Project
 {
     class Program
     {
-        static String input;
-        static int choice;
-        static int cpuChoice;
-        static void Main(string[] args)
+        private static String input;
+        private static int choice;
+        private static int cpuChoice;
+        private static int pScore = 0;
+        private static int eScore = 0;
+        public static void Main(string[] args)
         {
             Console.WriteLine("Rock, paper, scissors, lizard, or Spock?!");
             input = Console.ReadLine().ToLower();
             Logic(PlayerParser(input));
         }
-        static int PlayerParser(String input)
+        private static int PlayerParser(String input)
         {
             switch (input)
             {
@@ -39,12 +41,41 @@ namespace CSE2110Project
             }
             return choice;
         }
-        static void Logic(int userin)
+        private static void Logic(int userin)
         {
             Console.WriteLine("You chose: " + input);
             Random rand = new Random();
             cpuChoice = rand.Next(0,5);
-
+            switch (cpuChoice)
+            {
+                case 0:
+                    if (userin == 0) { Console.WriteLine("You both chose rock! Stalemate!"); }
+                    if (userin == 1) { Console.WriteLine("Paper covers rock! You win!"); pScore++; }
+                    if (userin == 2) { Console.WriteLine("Rock crushes scissors! You lost!"); eScore++; }
+                    if (userin == 3) { Console.WriteLine("Rock crushes lizard! You lost!"); eScore++; }
+                    if (userin == 4) { Console.WriteLine("Spock vaporizes rock! You win!"); pScore++; }
+                    break;
+                case 1:
+                    if (userin == 0) { Console.WriteLine("Paper covers rock! You lost!"); eScore++; }
+                    if (userin == 1) { Console.WriteLine("You both chose paper! Stalemate!"); }
+                    if (userin == 2) { Console.WriteLine("Scissors cuts paper! You win!"); pScore++; }
+                    if (userin == 3) { Console.WriteLine("Lizard eats paper! You win!"); pScore++; }
+                    if (userin == 4) { Console.WriteLine("Paper disproves Spock! You lost!"); }
+                    break;
+                case 2:
+                    if (userin == 2) { Console.WriteLine("You both chose scissors! Stalemate!"); }
+                    break;
+                case 3:
+                    if (userin == 3) { Console.WriteLine("You both chose lizard! Stalemate!"); }
+                    break;
+                case 4:
+                    if (userin == 4) { Console.WriteLine("You both chose Spock! Stalemate! \n RIP Leonard Nimoy"); }
+                    break;
+            }
+            if (cpuChoice == 0 && userin == 3)
+            {
+                Console.WriteLine("Rock curshes lizard, you lose!");
+            } else if (cpuChoice == 0 ) { }
         }
     }
 }
