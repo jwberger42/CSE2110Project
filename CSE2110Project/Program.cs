@@ -1,41 +1,53 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSE2110Project
 {
     class Program
     {
+        //what the user says
         private static String input;
+        //int version of the user input
         private static int choice;
+        //the random int that the cpu chooses
         private static int cpuChoice;
+        //the player score
         private static int pScore = 0;
+        //the enemy score
         private static int eScore = 0;
+        //counter to print the write
         private static int counter = 1;
+        //string form of cpu choice
         private static String outChoice;
+        //Main, need I say any more?
         public static void Main(string[] args)
         {
+            //game loop
             while (true)
             {
+                //print the write thing
                 if (counter == 1)
                 {
                     Console.WriteLine("Rock, paper, scissors, lizard, or Spock?!");
                 }
+                //ensure that scores are not both 0
                 if (eScore > 0 || pScore > 0)
                 {
                     Console.WriteLine("Player score: " + pScore + "\t Enemy score: " + eScore);
                 }
+                //print this if ran more than once
                 if (counter == 2)
                 {
                     Console.WriteLine("Pick again!");
                 }
+                //get user input
                 input = Console.ReadLine().ToLower();
+                //get enemy and comparisons
                 Logic(PlayerParser(input));
+                //prep for consecutive runs
                 counter = 2;
             }
         }
+        //pares userin into string format
         private static int PlayerParser(String input)
         {
             switch (input)
@@ -58,11 +70,15 @@ namespace CSE2110Project
             }
             return choice;
         }
+        //get random cpu input and compare
         private static void Logic(int userin)
         {
+            //show user output
             Console.WriteLine("You chose: " + input);
+            //initialize random
             Random rand = new Random();
             cpuChoice = rand.Next(0,5);
+            //get the cpu string and print
             switch (cpuChoice)
             {
                 case 0:
@@ -82,6 +98,7 @@ namespace CSE2110Project
                     break;
             }
             Console.WriteLine("The CPU chose: " + outChoice);
+            //do the comparisons
             switch (cpuChoice)
             {
                 //Rock
